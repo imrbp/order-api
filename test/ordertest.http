@@ -1,0 +1,67 @@
+GET http://localhost:8080/order
+Accept: application/json
+
+###
+POST http://localhost:8080/order
+Accept: application/json
+Content-Type: application/json
+
+{
+  "customer_name": "Gilang",
+  "order_at": "2024-03-03T07:46:02.466325+07:00",
+  "items": [
+    {
+      "item_code": 19,
+      "description": "jkjaldjfladf",
+      "quantity": 10
+    },
+    {
+      "item_code": 44,
+      "description": "asdflajdfka",
+      "quantity": 102
+    }
+  ]
+}
+
+###
+
+PUT http://localhost:8080/order/7
+Accept: application/json
+Content-Type: application/json
+
+
+{
+    "order_id": 7,
+    "customer_name": "Gilang Update",
+    "order_at": "2024-03-03T07:46:02.466325+07:00",
+    "items": [
+      {
+        "item_id": 9,
+        "item_code": 19,
+        "description": "updatekan ini",
+        "quantity": 10,
+        "order_id": 7
+      },
+      {
+        "item_id": 10,
+        "item_code": 40,
+        "description": "lelelelland",
+        "quantity": 102,
+        "order_id": 7
+      }
+    ]
+}
+
+
+
+###
+GET http://localhost:8080/order/1
+Accept: application/json
+
+###
+
+
+DELETE http://localhost:8080/order/7
+Accept: application/json
+
+###
