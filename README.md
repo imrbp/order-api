@@ -1,5 +1,9 @@
 # ASSIGNMENT 2
 
+# WARNING
+
+ini brach main. untuk yang sesusai dengan yang ada di classroom ada di branch adjustment-classroom
+
 ## Detail Database
 
 Nama Database : orders_by  
