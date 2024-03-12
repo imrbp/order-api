@@ -40,6 +40,7 @@ func (orderController OrderControllerImpl) Update(context *gin.Context) {
 	helper.PanicIfError(err)
 
 	helper.ReadFromRequestBody(context.Request, &orderUpdateRequest)
+	orderUpdateRequest.OrderId = id
 	orderResult := orderController.Service.Update(context, orderUpdateRequest)
 	webResponse := web.WebResponse{}
 	if orderResult.OrderId != id {
@@ -64,11 +65,11 @@ func (orderController OrderControllerImpl) Delete(context *gin.Context) {
 	id, err := strconv.Atoi(orderId)
 	helper.PanicIfError(err)
 
-	orderDeleted := orderController.Service.Delete(context, id)
+	_ = orderController.Service.Delete(context, id)
 	webResponse := web.WebResponse{
 		Code:   200,
 		Status: "OK",
-		Data:   orderDeleted,
+		Data:   "Success Delete",
 	}
 
 	helper.WriteToResponseBody(context.Writer, webResponse)
