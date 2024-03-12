@@ -13,10 +13,10 @@ import (
 
 func main() {
 	db := app.DBInit()
-	err := app.Seed()
-	if err != nil {
-		panic(err)
-	}
+	//err := app.Seed()
+	//if err != nil {
+	//	panic(err)
+	//}
 	validate := validator.New()
 	repositoryOrder := repository.NewOrderRepository(db)
 	serviceOrder := service.NewOrderService(repositoryOrder, db, validate)
@@ -26,6 +26,6 @@ func main() {
 		Addr:    ":8080",
 		Handler: handler,
 	}
-	err = server.ListenAndServe()
+	err := server.ListenAndServe()
 	helper.PanicIfError(err)
 }

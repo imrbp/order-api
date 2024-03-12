@@ -23,12 +23,7 @@ func (orderController OrderControllerImpl) Create(context *gin.Context) {
 	helper.ReadFromRequestBody(context.Request, &orderCreateRequest)
 	orderResult := orderController.Service.Create(context, orderCreateRequest)
 
-	webResponse := web.WebResponse{
-		Code:   200,
-		Status: "OK",
-		Data:   orderResult,
-	}
-	helper.WriteToResponseBody(context.Writer, webResponse)
+	helper.WriteToResponseBody(context.Writer, orderResult)
 }
 
 func (orderController OrderControllerImpl) Update(context *gin.Context) {
@@ -38,24 +33,14 @@ func (orderController OrderControllerImpl) Update(context *gin.Context) {
 	orderId := context.Param("orderId")
 	id, err := strconv.Atoi(orderId)
 	helper.PanicIfError(err)
-
 	helper.ReadFromRequestBody(context.Request, &orderUpdateRequest)
+	orderUpdateRequest.OrderId = id
 	orderResult := orderController.Service.Update(context, orderUpdateRequest)
-	webResponse := web.WebResponse{}
 	if orderResult.OrderId != id {
-		webResponse = web.WebResponse{
-			Code:   200,
-			Status: "Order Id Not Found",
-			Data:   nil,
-		}
+		helper.WriteToResponseBody(context.Writer, "Order Id Not Found")
 	} else {
-		webResponse = web.WebResponse{
-			Code:   200,
-			Status: "OK",
-			Data:   orderResult,
-		}
+		helper.WriteToResponseBody(context.Writer, orderResult)
 	}
-	helper.WriteToResponseBody(context.Writer, webResponse)
 }
 
 func (orderController OrderControllerImpl) Delete(context *gin.Context) {
@@ -65,13 +50,10 @@ func (orderController OrderControllerImpl) Delete(context *gin.Context) {
 	helper.PanicIfError(err)
 
 	orderDeleted := orderController.Service.Delete(context, id)
-	webResponse := web.WebResponse{
-		Code:   200,
-		Status: "OK",
-		Data:   orderDeleted,
+	if orderDeleted.OrderId != id {
+		helper.PanicIfError(err)
 	}
-
-	helper.WriteToResponseBody(context.Writer, webResponse)
+	helper.WriteToResponseBody(context.Writer, "Success delete")
 }
 
 func (orderController OrderControllerImpl) FindById(context *gin.Context) {
@@ -80,23 +62,13 @@ func (orderController OrderControllerImpl) FindById(context *gin.Context) {
 	helper.PanicIfError(err)
 
 	orderFind := orderController.Service.GetById(context, id)
-	webResponse := web.WebResponse{
-		Code:   200,
-		Status: "OK",
-		Data:   orderFind,
-	}
 
-	helper.WriteToResponseBody(context.Writer, webResponse)
+	helper.WriteToResponseBody(context.Writer, orderFind)
 }
 
 func (orderController OrderControllerImpl) FindAll(context *gin.Context) {
 
 	ordersFind := orderController.Service.GetAll(context)
-	webResponse := web.WebResponse{
-		Code:   200,
-		Status: "OK",
-		Data:   ordersFind,
-	}
 
-	helper.WriteToResponseBody(context.Writer, webResponse)
+	helper.WriteToResponseBody(context.Writer, ordersFind)
 }

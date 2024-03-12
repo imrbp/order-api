@@ -9,7 +9,7 @@ func ToCreateItemsEntity(items []web.ItemCreateRequest) []entity.Item {
 	var itemResponse []entity.Item
 	for _, data := range items {
 		itemResponse = append(itemResponse, entity.Item{
-			ItemCode:    data.ItemCode,
+			Code:        data.ItemCode,
 			Description: data.Description,
 			Quantity:    data.Quantity,
 		})
@@ -29,8 +29,7 @@ func ToItemsUpdateEntity(items []web.ItemUpdateRequest) []entity.Item {
 	var itemResponse []entity.Item
 	for _, data := range items {
 		itemResponse = append(itemResponse, entity.Item{
-			ItemId:      data.ItemId,
-			ItemCode:    data.ItemCode,
+			Code:        data.ItemCode,
 			Description: data.Description,
 			Quantity:    data.Quantity,
 		})
@@ -40,7 +39,7 @@ func ToItemsUpdateEntity(items []web.ItemUpdateRequest) []entity.Item {
 
 func ToOrderUpdateEntity(order web.OrderUpdateRequest) entity.Order {
 	return entity.Order{
-		OrderId:      order.OrderId,
+		Id:           order.OrderId,
 		OrderAt:      order.OrderAt,
 		CustomerName: order.CustomerName,
 		Items:        ToItemsUpdateEntity(order.Items),

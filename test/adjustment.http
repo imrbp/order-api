@@ -25,28 +25,26 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:8080/order/2
+PUT http://localhost:8080/order/4
 Accept: application/json
 Content-Type: application/json
 
 {
-  "id": 2,
   "orderedAt": "2021-10-06T16:53:27.675931+07:00",
-  "customerName": "Test",
+  "customerName": "Test update",
   "items":[
     {
-      "itemCode": "item1",
+      "itemCode": "Item2",
       "description": "ItemDescription",
       "quantity": 1
     },
     {
-      "itemCode": "item2",
+      "itemCode": "Item2",
       "description": "ItemDescription",
       "quantity": 1
     }
   ]
 }
-
 
 ###
 GET http://localhost:8080/order/2

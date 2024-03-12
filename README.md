@@ -2,44 +2,28 @@
 
 ## Detail Database
 
+# ADJUSTMENT
+
+Ini branch Adjusment untuk menyesuaikan request dan response yang ada di classroom. 
+
 Nama Database : orders_by  
 
 Daftar Table:
 
 - items
-  - item_id
-  - item_code
+  - id -> untuk update tidak digunakan. maka items akan menambah. dan tidak ditampilkan di response
+  - item_code 
   - description
   - quantity
   - order_id
 - orders
-    - order_id
-    - order_at
-    - customer_name
+  - id
+  - order_at
+  - customer_name
 
-## a. Create Order
-Path: /orders 
+# Test
 
-Method: Post 
-
-Request Body :
-
-## b. Get Orders
-Path: /orders 
-
-Method: GET
-
-## c. Update Order
-Path: /orders/:orderId 
-
-Method:  PUT
-
-Request Body:
-
-## d. Delete Order 
-Path: /orders/:orderId
- 
-Method: DELETE
+Testing yang sesuai dengan classroom ada di folder test/adjustment.http
 
 
 # Package yang digunakan
@@ -50,8 +34,3 @@ Method: DELETE
 - gorm
 - testify
 
-
-# TODO
-- Error Handling
-- Unit Testing
-- When Updating Order, If user want to add new Items. its possible?

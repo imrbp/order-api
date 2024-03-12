@@ -7,18 +7,21 @@ import (
 
 func Seed() error {
 	db := DBInit()
-	db.AutoMigrate(entity.Order{}, entity.Item{})
+	err := db.AutoMigrate(entity.Order{}, entity.Item{})
+	if err != nil {
+		return err
+	}
 	orders := entity.Order{
 		CustomerName: "Test1",
 		OrderAt:      time.Now(),
 		Items: []entity.Item{
 			{
-				ItemCode:    1,
+				Code:        "Item1",
 				Quantity:    10,
 				Description: "lalaland",
 			},
 			{
-				ItemCode:    2,
+				Code:        "item2",
 				Quantity:    30,
 				Description: "Comehere",
 			},

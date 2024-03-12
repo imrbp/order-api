@@ -3,8 +3,8 @@ package entity
 import "time"
 
 type Order struct {
-	OrderId      int `gorm:"primaryKey"`
-	CustomerName string
+	Id           int    `gorm:"primaryKey"`
+	CustomerName string `gorm:"type:varchar(50)"`
 	OrderAt      time.Time
-	Items        []Item `gorm:"foreignKey:OrderId"`
+	Items        []Item
 }

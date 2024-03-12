@@ -5,16 +5,14 @@ import (
 )
 
 type OrderResponse struct {
-	OrderId      int            `json:"order_id"`
-	CustomerName string         `json:"customer_name"`
-	OrderAt      time.Time      `json:"order_at"`
+	OrderId      int            `json:"id"`
+	CustomerName string         `json:"customerName"`
+	OrderAt      time.Time      `json:"orderAt"`
 	Items        []ItemResponse `json:"items"`
 }
 
 type ItemResponse struct {
-	ItemId      int    `json:"item_id"`
-	ItemCode    int    `json:"item_code"`
+	ItemCode    string `json:"itemCode"`
 	Description string `json:"description"`
 	Quantity    int    `json:"quantity"`
-	OrderId     int    `json:"order_id"`
 }

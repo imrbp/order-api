@@ -9,11 +9,9 @@ func ToItemsResponse(items []entity.Item) []web.ItemResponse {
 	var itemResponse []web.ItemResponse
 	for _, data := range items {
 		itemResponse = append(itemResponse, web.ItemResponse{
-			ItemId:      data.ItemId,
-			ItemCode:    data.ItemCode,
+			ItemCode:    data.Code,
 			Description: data.Description,
 			Quantity:    data.Quantity,
-			OrderId:     data.OrderId,
 		})
 	}
 	return itemResponse
@@ -21,7 +19,7 @@ func ToItemsResponse(items []entity.Item) []web.ItemResponse {
 
 func ToOrderResponse(order entity.Order) web.OrderResponse {
 	return web.OrderResponse{
-		OrderId:      order.OrderId,
+		OrderId:      order.Id,
 		OrderAt:      order.OrderAt,
 		CustomerName: order.CustomerName,
 		Items:        ToItemsResponse(order.Items),
